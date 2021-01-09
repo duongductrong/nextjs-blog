@@ -1,7 +1,7 @@
 import { Box, Stack, Text, VStack } from "@chakra-ui/react";
 import Head from "next/head";
-import Card from "../components/Dumb/Card/Card";
-import Search from "../components/Dumb/Search/Search";
+import Card from "../../components/Dumb/Card/Card";
+import Search from "../../components/Dumb/Search/Search";
 
 const Home: React.FC = function () {
   return (
