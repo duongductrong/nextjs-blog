@@ -59,17 +59,17 @@ const Navbar: React.FC<Props> = function ({ ...props }) {
           </Link>
           <Link href="/[path]" as={routes.talk}>
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              Tâm sự
+              Work
             </Button>
           </Link>
           <Link href="/[path]" as={routes.projects}>
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              Dự án nhỏ đã làm
+              Projects
             </Button>
           </Link>
           <Link href="/[path]" as={routes.about}>
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              Về tôi
+              About
             </Button>
           </Link>
         </Stack>

@@ -2,10 +2,11 @@ import { Box, Stack, Text, VStack } from "@chakra-ui/react";
 import Head from "next/head";
 import Card from "../../components/Dumb/Card/Card";
 import Search from "../../components/Dumb/Search/Search";
+import ContainerNormal from "../../components/Dumb/Wrap/ContainerNormal";
 
 const Home: React.FC = function () {
   return (
-    <Box maxW="800px" mx="auto" px={{ base: 5, xl: 0 }}>
+    <ContainerNormal>
       <Head>
         <title>My Blog - duongductrong06</title>
         <link rel="icon" href="/favicon.ico" />
@@ -36,7 +37,7 @@ const Home: React.FC = function () {
           ))}
         </VStack>
       </Box>
-    </Box>
+    </ContainerNormal>
   );
 };
 

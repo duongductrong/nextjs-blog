@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { Avatar, Box, Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import MarkdownChakra from "../../components/Dumb/MarkdownChakra/MarkdownChakra";
+import ContainerNormal from "../../components/Dumb/Wrap/ContainerNormal";
 
 const markdown = `
----
 __Advertisement :)__
 
 - __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
@@ -261,7 +261,7 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
 const Blog: FC = function ({}) {
   return (
-    <Box maxW="800px" mx="auto" px={{base: 5, lg: 0}}>
+    <ContainerNormal>
       <Head>
         <title>
           Modern home in city center in the heart of historic Los Angeles -
@@ -283,7 +283,7 @@ const Blog: FC = function ({}) {
           <Box>
             <Stack direction="row" spacing={3} alignItems="center">
               <Avatar size="sm" src="https://bit.ly/kent-c-dodds" />
-              <Text fontSize="lg">duongductrong06</Text>
+              <Text fontSize="md">duongductrong06</Text>
             </Stack>
           </Box>
           <Box>
@@ -297,18 +297,18 @@ const Blog: FC = function ({}) {
                   textTransform="uppercase"
                   ml="2"
                 >
-                  JavaScript &bull; ReactJS
+                  7 min read &bull; 220 views
                 </Box>
               </Box>
             </Box>
           </Box>
         </Stack>
 
-        <main style={{ marginTop: "3rem" }}>
+        <main style={{ marginTop: "2rem" }}>
           <MarkdownChakra>{markdown}</MarkdownChakra>
         </main>
       </Box>
-    </Box>
+    </ContainerNormal>
   );
 };
 
