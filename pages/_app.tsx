@@ -8,13 +8,15 @@
  */
 
 import { AppProps } from "next/dist/next-server/lib/router/router";
-import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import { extendTheme, ChakraProvider, Spinner } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { config, breakpoints } from "../configs/theme-chakra";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FC, Fragment, ReactNode, useEffect } from "react";
-// import AdminLayout from "../components/Layout/AdminLayout/AdminLayout";
+import { FC, Fragment, ReactNode, useEffect, useState } from "react";
+
+import { DefaultSeo } from "next-seo";
+import CustomSEO from "../next-seo.config";
 
 const theme = extendTheme({ config, breakpoints });
 
@@ -24,14 +26,17 @@ interface AppLayoutProps extends AppProps {
 }
 
 function MyApp({ Component, pageProps }: AppLayoutProps) {
+  const [routing, setRouting] = useState<Boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
     router.events.on("routeChangeStart", () => {
       console.log("loading");
+      setRouting(true);
     });
 
     router.events.on("routeChangeComplete", () => {
+      setRouting(false);
       console.log("done");
     });
 
@@ -103,9 +108,17 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
           }
         `}
       />
+      
+      <DefaultSeo {...CustomSEO} />
+
       <LayoutRender>
         <Component {...pageProps} />
       </LayoutRender>
+      {routing ? (
+        <Spinner size="md" position="fixed" bottom={5} right={5} />
+      ) : (
+        <></>
+      )}
     </ChakraProvider>
   );
 }

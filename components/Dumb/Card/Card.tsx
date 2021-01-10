@@ -1,11 +1,10 @@
 import { Badge, Box, Image } from "@chakra-ui/react";
+import Link from "next/link";
 
 interface Props extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {}
 
 const Card: React.FC<Props> = function ({ ...props }) {
   const property = {
-    beds: 3,
-    baths: 2,
     title: "Modern home in city center in the heart of historic Los Angeles",
     formattedPrice: "$1,900.00",
     reviewCount: 34,
@@ -32,7 +31,7 @@ const Card: React.FC<Props> = function ({ ...props }) {
             textTransform="uppercase"
             ml="2"
           >
-            {property.beds} JavaScript &bull; {property.baths} ReactJS
+          JavaScript &bull; ReactJS
           </Box>
         </Box>
 
@@ -44,7 +43,7 @@ const Card: React.FC<Props> = function ({ ...props }) {
           isTruncated
           fontSize="2xl"
         >
-          {property.title}
+          <Link href="/blog/new-post">{property.title}</Link>
         </Box>
 
         <Box mt={1} as="p" fontSize="md">
@@ -53,7 +52,7 @@ const Card: React.FC<Props> = function ({ ...props }) {
         </Box>
 
         <Box as="span" mr="2" color="gray.600" fontSize="sm">
-          {property.reviewCount} reviews
+          {property.reviewCount} View
         </Box>
       </Box>
     </Box>
