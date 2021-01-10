@@ -1,11 +1,58 @@
-/**
- * Author: Duong Duc Trong
- * Github: https://github.com/duongductrong
- * Contact for work at: duongductrong06@gmail.com
- */
+import { Box, Stack, Text, VStack } from "@chakra-ui/react";
+import Head from "next/head";
+import Card from "../components/Dumb/Card/Card";
+import Search from "../components/Dumb/Search/Search";
+import ContainerNormal from "../components/Dumb/Container/ContainerNormal";
+import ClientLayout from "../components/Layout/ClientLayout/ClientLayout";
+import { FC } from "react";
+import { GetStaticProps } from "next";
+import PageWithLayoutType from "../types/PageLayoutWithType";
 
-import Home from "./views/Home";
+interface Props {}
 
-export default function App() {
-  return <Home />;
-}
+const Home: FC<Props> = function () {
+  return (
+      <ContainerNormal>
+        <Head>
+          <title>My Blog - duongductrong06</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <Box mt={10}>
+          <Text fontSize="5xl" fontWeight="bold">
+            First, say hello
+          </Text>
+          <Text fontSize="lg">
+            Lorem ipsum is placeholder text commonly used in the graphic, print,
+            and publishing industries for previewing layouts and visual mockups.
+            Lorem ipsum is placeholder text commonly used in the graphic, print,
+            and publishing industries for previewing layouts and visual mockups.
+          </Text>
+        </Box>
+
+        <Search />
+
+        <Box mt={10}>
+          <Text fontSize="5xl" fontWeight="bold">
+            All posts
+          </Text>
+
+          <VStack spacing={1}>
+            {[1, 2, 3, 4, 5, 6].map((k) => (
+              <Card key={k} />
+            ))}
+          </VStack>
+        </Box>
+      </ContainerNormal>
+  );
+};
+
+const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: {},
+  };
+};
+
+(Home as PageWithLayoutType).Layout = ClientLayout;
+
+export default Home;

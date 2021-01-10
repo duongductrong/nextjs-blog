@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
-import ContainerNormal from "../../../components/Dumb/Wrap/ContainerNormal";
+import ContainerNormal from "../../../components/Dumb/Container/ContainerNormal";
 import {
   Button,
   ButtonGroup,
@@ -10,25 +10,24 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import DrawerFileManager from "../../../components/Smart/DrawerFileManager/DrawerFileManager";
 import Head from "next/head";
+import AdminLayout from "../../../components/Layout/AdminLayout/AdminLayout";
+import PageWithLayoutType from "../../../types/PageLayoutWithType";
 
 interface Props {}
 
-const Write: FC<Props> = function ({}): ReactElement {
+const CreateBlog: FC<Props> = function ({}): ReactElement {
   const [value, setValue] = useState("**Hello world!!!**");
   return (
     <ContainerNormal maxW="992px">
       <Head>
-        <title>Manager writer - duongductrong06</title>
+        <title>Create new blog - duongductrong06</title>
       </Head>
 
       <Stack direction="row" alignItems="center">
         <Text as="h1" fontSize="3xl">
           Editor
         </Text>
-
-        <DrawerFileManager />
       </Stack>
 
       <form>
@@ -59,4 +58,6 @@ const Write: FC<Props> = function ({}): ReactElement {
   );
 };
 
-export default Write;
+(CreateBlog as PageWithLayoutType).Layout = AdminLayout;
+
+export default CreateBlog;

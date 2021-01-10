@@ -1,7 +1,7 @@
 const routes = (() => ({
   blog: "/",
-  about: "/about",
-  talk: "/talk",
+  about: "/next-admin/blog/write",
+  talk: "/blog/1",
   projects: "/projects",
 }))();
 

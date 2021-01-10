@@ -9,11 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { TiWeatherSunny, TiAdjustBrightness } from "react-icons/ti";
 import Link from "next/link";
-import routes from "../../configs/routes";
+import routes from "../../../configs/routes";
+import { useRouter } from "next/router";
 
 interface Props extends Omit<BoxProps, "className"> {}
 
 const Navbar: React.FC<Props> = function ({ ...props }) {
+  const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
 
   // Color of header
@@ -57,19 +59,19 @@ const Navbar: React.FC<Props> = function ({ ...props }) {
               Blog
             </Button>
           </Link>
-          <Link href="/[path]" as={routes.talk}>
+          <Link href="/about" passHref>
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              Work
+              About
             </Button>
           </Link>
-          <Link href="/[path]" as={routes.projects}>
+          <Link href="/project">
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
               Projects
             </Button>
           </Link>
-          <Link href="/[path]" as={routes.about}>
+          <Link href="/admin/blog/create">
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              About
+              Writer
             </Button>
           </Link>
         </Stack>

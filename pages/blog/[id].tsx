@@ -2,7 +2,9 @@ import React, { FC } from "react";
 import { Avatar, Box, Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import MarkdownChakra from "../../components/Dumb/MarkdownChakra/MarkdownChakra";
-import ContainerNormal from "../../components/Dumb/Wrap/ContainerNormal";
+import ContainerNormal from "../../components/Dumb/Container/ContainerNormal";
+import ClientLayout from "../../components/Layout/ClientLayout/ClientLayout";
+import PageWithLayoutType from "../../types/PageLayoutWithType";
 
 const markdown = `
 __Advertisement :)__
@@ -282,7 +284,7 @@ const Blog: FC = function ({}) {
         >
           <Box>
             <Stack direction="row" spacing={3} alignItems="center">
-              <Avatar size="sm" src="https://bit.ly/kent-c-dodds" />
+              <Avatar size="sm" src="" />
               <Text fontSize="md">duongductrong06</Text>
             </Stack>
           </Box>
@@ -311,5 +313,7 @@ const Blog: FC = function ({}) {
     </ContainerNormal>
   );
 };
+
+(Blog as PageWithLayoutType).Layout = ClientLayout;
 
 export default Blog;

@@ -13,8 +13,12 @@ import {
 import Head from "next/head";
 import Link from "next/link";
 import React, { FC } from "react";
+import ClientLayout from "../../components/Layout/ClientLayout/ClientLayout";
+import PageWithLayoutType from "../../types/PageLayoutWithType";
 
-const Login: FC = function () {
+type LoginComponent = FC;
+
+const Login: LoginComponent = function () {
   const [show, setShow] = React.useState<Boolean>(false);
   const handleClick = () => setShow(!show);
 
@@ -61,5 +65,7 @@ const Login: FC = function () {
     </Box>
   );
 };
+
+(Login as PageWithLayoutType).Layout = ClientLayout;
 
 export default Login;

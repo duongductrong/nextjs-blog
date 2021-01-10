@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import {
   Button,
+  ButtonProps,
   CloseButton,
   Drawer,
   DrawerBody,
@@ -9,16 +10,14 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Input,
   List,
   ListItem,
   Stack,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaBars } from "react-icons/fa";
+import { IoAlbumsOutline } from "react-icons/io5";
 
-interface Props {}
+interface Props extends ButtonProps {}
 
 const DrawerFileManager: FC<Props> = function ({ ...props }): ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,11 +25,16 @@ const DrawerFileManager: FC<Props> = function ({ ...props }): ReactElement {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="gray" size="sm" onClick={onOpen}>
-        <FaBars />
+      <Button
+        {...props}
+        ref={btnRef}
+        colorScheme="gray"
+        size="md"
+        onClick={onOpen}
+      >
+        <IoAlbumsOutline />
       </Button>
       <Drawer
-        {...props}
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
@@ -43,11 +47,31 @@ const DrawerFileManager: FC<Props> = function ({ ...props }): ReactElement {
 
             <DrawerBody>
               <List>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1,1,1,1,1,1,11,1,1].map((_) => (
-                  <ListItem mb={3}>
+                {[
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  11,
+                  1,
+                  1,
+                ].map((_, index) => (
+                  <ListItem mb={3} key={index}>
                     <Stack direction="row">
                       <Button flex="2" colorScheme="gray">
-                        Ảnh {_}
+                        Ảnh {index}
                       </Button>{" "}
                       <CloseButton flex="1" size="lg" />
                     </Stack>
