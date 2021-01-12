@@ -49,7 +49,7 @@ const Card: React.FC<Props> = function ({ title, description, tag, link, views, 
           isTruncated
           fontSize="2xl"
         >
-          <Link href="/blog/new-post">{title}</Link>
+          <Link href={link}>{title}</Link>
         </Box>
 
         <Box mt={1} as="p" fontSize="md">

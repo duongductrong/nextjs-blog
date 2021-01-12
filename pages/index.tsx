@@ -16,7 +16,7 @@ const Home: FC<Props> = function ({ posts }): ReactElement {
     <ContainerNormal>
       <Box mt={10}>
         <Text fontSize="5xl" fontWeight="bold">
-          First, say hello
+          Blog
         </Text>
         <Text fontSize="lg">
           Lorem ipsum is placeholder text commonly used in the graphic, print,
@@ -35,12 +35,12 @@ const Home: FC<Props> = function ({ posts }): ReactElement {
 
         <VStack spacing={1}>
           {posts.length !== 0
-            ? posts.map((card, index) => (
+            ? posts.map((post, index) => (
                 <Card
-                  title={card.title}
-                  link={`/blog/${card.alias}`}
-                  description={card.description}
-                  tag=""
+                  title={post.title}
+                  link={`/blog/${post.alias}`}
+                  description={post.description}
+                  tag={post.tag.name}
                   views={10}
                   key={index}
                 />
@@ -57,16 +57,19 @@ const Home: FC<Props> = function ({ posts }): ReactElement {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   let response = null;
 
   try {
+    // try get data from api
     response = await PostService.getAll({});
-  } catch (_) {}
+  } catch (err) {
+    console.log(err);
+  }
 
   return {
     props: {
-      posts: response?.data?.data ?? [],
+      posts: response?.data ?? [],
     },
   };
 };

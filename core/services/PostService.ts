@@ -1,17 +1,18 @@
-import axiosServer from "../axiosServer";
+import { AxiosPromise } from "axios";
+import axiosInstance from "../axiosInstance";
 
-interface getAllProps {
+export interface getAllProps {
   params?: Object | undefined | null;
 }
 
-interface getItemsProps {
+export interface getItemsProps {
   params?: Object | undefined | null;
-  id: number | string | undefined | null;
+  aliasOrId: number | string | undefined | null;
 }
 
 class PostService {
-  getAll({ params = {}, ...props }: getAllProps): Promise<any> {
-    return axiosServer({
+  getAll<T extends getAllProps>({ params = {}, ...props }: T): AxiosPromise {
+    return axiosInstance({
       method: "GET",
       url: "/posts",
       params: params,
@@ -19,14 +20,14 @@ class PostService {
     });
   }
 
-  getItem({
+  getItem<T extends getItemsProps>({
     params = {},
-    id = undefined,
+    aliasOrId = undefined,
     ...props
-  }: getItemsProps): Promise<any> {
-    return axiosServer({
+  }: T): AxiosPromise {
+    return axiosInstance({
       method: "GET",
-      url: `/posts/${id}`,
+      url: `/posts/${aliasOrId}`,
       params: params,
       ...props,
     });
