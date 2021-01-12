@@ -11,6 +11,7 @@ import { TiWeatherSunny, TiAdjustBrightness } from "react-icons/ti";
 import Link from "next/link";
 import routes from "../../../configs/routes";
 import { useRouter } from "next/router";
+import NavbarDrawer from "./components/NavbarDrawer";
 
 interface Props extends Omit<BoxProps, "className"> {}
 
@@ -53,7 +54,7 @@ const Navbar: React.FC<Props> = function ({ ...props }) {
             )}
           </Button>
         </Box>
-        <Stack direction={["row"]} spacing={3}>
+        <Stack direction={["row"]} spacing={3} display={{base: "none", sm: "block"}}>
           <Link href={routes.blog}>
             <Button bg={background} fontWeight="semiBold" fontSize="lg">
               Blog
@@ -70,11 +71,13 @@ const Navbar: React.FC<Props> = function ({ ...props }) {
             </Button>
           </Link>
           <Link href="/admin/blog/create">
-            <Button bg={background} fontWeight="semiBold" fontSize="lg">
-              Writer
+            <Button fontWeight="semiBold" variant="outline" fontSize="lg">
+              Create
             </Button>
           </Link>
         </Stack>
+
+        <NavbarDrawer display={{base: "block", sm: "none"}} />
       </Flex>
     </Box>
   );

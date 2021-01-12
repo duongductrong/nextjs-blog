@@ -1,9 +1,15 @@
 import { Badge, Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
-interface Props extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {}
+interface Props extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {
+  title: string;
+  description: string;
+  tag: string;
+  link: string;
+  views: string | number;
+}
 
-const Card: React.FC<Props> = function ({ ...props }) {
+const Card: React.FC<Props> = function ({ title, description, tag, link, views, ...props }) {
   const property = {
     title: "Modern home in city center in the heart of historic Los Angeles",
     formattedPrice: "$1,900.00",
@@ -31,7 +37,7 @@ const Card: React.FC<Props> = function ({ ...props }) {
             textTransform="uppercase"
             ml="2"
           >
-          JavaScript &bull; ReactJS
+            &bull; {tag}
           </Box>
         </Box>
 
@@ -43,16 +49,15 @@ const Card: React.FC<Props> = function ({ ...props }) {
           isTruncated
           fontSize="2xl"
         >
-          <Link href="/blog/new-post">{property.title}</Link>
+          <Link href="/blog/new-post">{title}</Link>
         </Box>
 
         <Box mt={1} as="p" fontSize="md">
-          Lorem ipsum is placeholder text commonly used in the graphic, print,
-          and publishing industries for previewing layouts and visual mockups
+          {description}
         </Box>
 
         <Box as="span" mr="2" color="gray.600" fontSize="sm">
-          {property.reviewCount} View
+          {views} View
         </Box>
       </Box>
     </Box>

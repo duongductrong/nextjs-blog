@@ -13,6 +13,7 @@ import {
 import Head from "next/head";
 import AdminLayout from "../../../components/Layout/AdminLayout/AdminLayout";
 import PageWithLayoutType from "../../../types/PageLayoutWithType";
+import { NextSeo } from "next-seo";
 
 interface Props {}
 

@@ -1,23 +1,19 @@
-import { Box, Button, Stack, Text, VStack } from "@chakra-ui/react";
-import Head from "next/head";
+import { Box, Button, Text, VStack } from "@chakra-ui/react";
 import Card from "../components/Dumb/Card/Card";
 import Search from "../components/Dumb/Search/Search";
 import ContainerNormal from "../components/Dumb/Container/ContainerNormal";
 import ClientLayout from "../components/Layout/ClientLayout/ClientLayout";
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 import { GetStaticProps } from "next";
 import PageWithLayoutType from "../types/PageLayoutWithType";
+import PostService from "../core/services/PostService";
+interface Props {
+  posts: Array<any>;
+}
 
-interface Props {}
-
-const Home: FC<Props> = function () {
+const Home: FC<Props> = function ({ posts }): ReactElement {
   return (
     <ContainerNormal>
-      <Head>
-        <title>My Blog - duongductrong06</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Box mt={10}>
         <Text fontSize="5xl" fontWeight="bold">
           First, say hello
@@ -38,9 +34,18 @@ const Home: FC<Props> = function () {
         </Text>
 
         <VStack spacing={1}>
-          {[1, 2, 3, 4, 5, 6].map((k) => (
-            <Card key={k} />
-          ))}
+          {posts.length !== 0
+            ? posts.map((card, index) => (
+                <Card
+                  title={card.title}
+                  link={`/blog/${card.alias}`}
+                  description={card.description}
+                  tag=""
+                  views={10}
+                  key={index}
+                />
+              ))
+            : "Khong có gì hết"}
         </VStack>
       </Box>
       <Box textAlign="center" mb={5}>
@@ -52,9 +57,17 @@ const Home: FC<Props> = function () {
   );
 };
 
-const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  let response = null;
+
+  try {
+    response = await PostService.getAll({});
+  } catch (_) {}
+
   return {
-    props: {},
+    props: {
+      posts: response?.data?.data ?? [],
+    },
   };
 };
 
